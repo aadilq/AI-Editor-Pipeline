@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+yt-dlp
+assemblyai
+anthropic
+ffmpeg-python
+celery[redis]
+redis
+sqlalchemy
+psycopg2-binary
+python-dotenv
+pydantic
