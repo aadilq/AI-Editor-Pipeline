@@ -105,7 +105,7 @@ pending → downloading → transcribing → scoring → extracting → done
 ## Build Roadmap
 
 ### Phase 1 — Project Scaffold
-- [ ] **1.1** Initialize directory structure (`app/`, `worker/`, `db/`, `clips/`)
+- [✅] **1.1** Initialize directory structure (`app/`, `worker/`, `db/`, `clips/`)
 - [ ] **1.2** Write `requirements.txt` with all dependencies
 - [ ] **1.3** Write `docker-compose.yml` with FastAPI, Celery worker, Redis, PostgreSQL services
 - [ ] **1.4** Configure bind mount (`./clips:/app/clips`) in Compose
