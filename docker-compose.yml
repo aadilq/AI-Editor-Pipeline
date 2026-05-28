@@ -13,6 +13,8 @@ services:
               condition: service_healthy
           postgres:
               condition: service_healthy
+        volume:
+          - ./clips:/app/clips
     redis:
         image: redis:7.2
         container_name: redis-queue
@@ -39,6 +41,8 @@ services:
               condition: service_healthy
           postgres:
               condition: service_healthy
+        volumes:
+            ./clips:/app/clips
     postgres:
       image: postgres:16-alpine
       container_name: postgres-db
