@@ -111,7 +111,7 @@ pending → downloading → transcribing → scoring → extracting → done
 - [✅] **1.4** Configure bind mount (`./clips:/app/clips`) in Compose
 
 ### Phase 2 — Database Layer
-- [ ] **2.1** Define SQLAlchemy models: `Job`, `Clip`
+- [✅] **2.1** Define SQLAlchemy models: `Job`, `Clip`
 - [ ] **2.2** Write Alembic migration (or use `create_all` for dev simplicity)
 - [ ] **2.3** Write DB session/engine setup with PostgreSQL connection string from env
 
