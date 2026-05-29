@@ -30,7 +30,7 @@ class Job(Base):
           onupdate=func.now()
      )
      error_message: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-     clips = Mapped[list["Clip"]] = relationship("Clip", back_populates="job")
+     clips : Mapped[list["Clip"]] = relationship("Clip", back_populates="job")
 
 
 class Clip(Base):

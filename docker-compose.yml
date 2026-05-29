@@ -13,7 +13,7 @@ services:
               condition: service_healthy
           postgres:
               condition: service_healthy
-        volume:
+        volumes:
           - ./clips:/app/clips
     redis:
         image: redis:7.2
@@ -42,7 +42,7 @@ services:
           postgres:
               condition: service_healthy
         volumes:
-            ./clips:/app/clips
+            - ./clips:/app/clips
     postgres:
       image: postgres:16-alpine
       container_name: postgres-db
@@ -57,7 +57,7 @@ services:
         POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         POSTGRES_DB: clipdb
       ports:
-        - "5432:5432"
+        - "5434:5432"
       volumes:
         - pgdata:/var/lib/postgresql/data
 
