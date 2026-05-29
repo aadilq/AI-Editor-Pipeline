@@ -113,7 +113,7 @@ pending → downloading → transcribing → scoring → extracting → done
 ### Phase 2 — Database Layer
 - [✅] **2.1** Define SQLAlchemy models: `Job`, `Clip`
 - [✅] **2.2** Write Alembic migration (or use `create_all` for dev simplicity)
-- [ ] **2.3** Write DB session/engine setup with PostgreSQL connection string from env
+- [✅] **2.3** Write DB session/engine setup with PostgreSQL connection string from env
 
 ### Phase 3 — API Layer
 - [ ] **3.1** FastAPI app skeleton with lifespan and DB dependency injection
