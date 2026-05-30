@@ -1,6 +1,8 @@
 from celery import Celery
 import os
 from dotenv import load_dotenv
+from db.models import Job
+from db.session import SessionLocal
 
 load_dotenv()
 
@@ -13,3 +15,31 @@ app = Celery(
     backend=REDIS_URL
 )
 
+@app.task
+def process_video(job_id: int):
+    db = SessionLocal()
+
+    current_job = db.query(Job).filter(Job.id == job_id).first()
+
+    ## Step 1: Downloading
+    current_job.status = "downloading"
+    db.commit()
+    # ... downloading logic ...
+
+    ## Step 2: Transcribing
+    current_job.status = "transcribing"
+    db.commit()
+    # ... transcribing logic ...
+
+    ## Step 3: LLM Scoring
+    current_job.status = "scoring"
+    db.commit()
+    # ... scoring logic ...
+
+    ## Step 4: Extracting
+    current_job.status = "extracting"
+    db.commit()
+    # ... extracting logic ...
+
+    current_job.status = "done"
+    db.commit()
