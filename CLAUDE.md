@@ -124,7 +124,7 @@ pending → downloading → transcribing → scoring → extracting → done
 ### Phase 4 — Celery Worker Setup
 - [✅] **4.1** Configure Celery app with Redis broker and result backend
 - [✅] **4.2** Wire up task to update job state in PostgreSQL at each step
-- [ ] **4.3** Implement error handling — catch exceptions, set job state to `failed`
+- [✅] **4.3** Implement error handling — catch exceptions, set job state to `failed`
 
 ### Phase 5 — Download Step
 - [ ] **5.1** Integrate `yt-dlp` to download video from YouTube URL
