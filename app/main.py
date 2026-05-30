@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from contextlib import asynccontextmanager
 from db.session import get_db
 from sqlalchemy.orm import Session
@@ -23,13 +23,22 @@ def read_index():
     return {"message": "Hello, FastAPI!"}
 
 @app.post("/submit")
-def submit(payload: SubmitPayload, db: Session = Depends(get_db), ):
+def submit(payload: SubmitPayload, db: Session = Depends(get_db)):
     video_url = str(payload.url)
     job = Job(status="pending", video_url=video_url)
     db.add(job)
     db.commit()
     db.refresh(job)
+    # TODO: enqueue celery task
+    # sends the task to the message broker (Redis)
+    # process_video.delay(job.id)
     return {"job_id": job.id}
     
 
 
+@app.get("/status/{job_id}")
+def get_job_status(job_id: int, db: Session = Depends(get_db)):
+    job = db.query(Job).filter(Job.id == job_id).first()
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+    return {"job_status": job.status, "job_clips": []}

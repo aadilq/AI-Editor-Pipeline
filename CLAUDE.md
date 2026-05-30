@@ -118,7 +118,7 @@ pending → downloading → transcribing → scoring → extracting → done
 ### Phase 3 — API Layer
 - [✅] **3.1** FastAPI app skeleton with lifespan and DB dependency injection
 - [✅] **3.2** `POST /submit` — validate URL, insert job, enqueue Celery task, return `job_id`
-- [ ] **3.3** `GET /status/{job_id}` — return job state + associated clips from DB
+- [✅] **3.3** `GET /status/{job_id}` — return job state + associated clips from DB
 - [ ] **3.4** `GET /clips/{clip_id}` — serve clip file via `FileResponse`
 
 ### Phase 4 — Celery Worker Setup
