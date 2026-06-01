@@ -129,7 +129,7 @@ pending → downloading → transcribing → scoring → extracting → done
 ### Phase 5 — Download Step
 - [✅] **5.1** Integrate `yt-dlp` to download video from YouTube URL
 - [✅] **5.2** Save raw video to `./clips/{job_id}/source.mp4`
-- [ ] **5.3** Update job state to `downloading` → `transcribing` on completion
+- [✅] **5.3** Update job state to `downloading` → `transcribing` on completion
 
 ### Phase 6 — Transcription Step
 - [ ] **6.1** Integrate AssemblyAI SDK (`aai.Transcriber`)

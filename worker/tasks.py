@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from db.models import Job
 from db.session import SessionLocal
+from downloader import download_video
 
 load_dotenv()
 
@@ -24,6 +25,7 @@ def process_video(job_id: int):
         ## Step 1: Downloading
         current_job.status = "downloading"
         db.commit()
+        download_video(job_id, current_job.video_url)
         # ... downloading logic ...
 
         ## Step 2: Transcribing
