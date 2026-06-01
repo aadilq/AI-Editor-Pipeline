@@ -132,9 +132,9 @@ pending → downloading → transcribing → scoring → extracting → done
 - [✅] **5.3** Update job state to `downloading` → `transcribing` on completion
 
 ### Phase 6 — Transcription Step
-- [ ] **6.1** Integrate AssemblyAI SDK (`aai.Transcriber`)
-- [ ] **6.2** Enable speaker diarization and timestamped utterances
-- [ ] **6.3** Parse response into a list of segments with `text`, `start`, `end`, `speaker`
+- [✅] **6.1** Integrate AssemblyAI SDK (`aai.Transcriber`)
+- [✅] **6.2** Enable speaker diarization and timestamped utterances
+- [✅] **6.3** Parse response into a list of segments with `text`, `start`, `end`, `speaker`
 - [ ] **6.4** Update job state to `scoring` on completion
 
 ### Phase 7 — LLM Scoring Step
