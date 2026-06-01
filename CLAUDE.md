@@ -127,8 +127,8 @@ pending → downloading → transcribing → scoring → extracting → done
 - [✅] **4.3** Implement error handling — catch exceptions, set job state to `failed`
 
 ### Phase 5 — Download Step
-- [ ] **5.1** Integrate `yt-dlp` to download video from YouTube URL
-- [ ] **5.2** Save raw video to `./clips/{job_id}/source.mp4`
+- [✅] **5.1** Integrate `yt-dlp` to download video from YouTube URL
+- [✅] **5.2** Save raw video to `./clips/{job_id}/source.mp4`
 - [ ] **5.3** Update job state to `downloading` → `transcribing` on completion
 
 ### Phase 6 — Transcription Step
