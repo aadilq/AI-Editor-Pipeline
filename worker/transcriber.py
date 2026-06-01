@@ -14,6 +14,8 @@ def transcribe_video(source_path: str) -> list[dict]:
     transcript = transcriber.transcribe(source_path)
 
     
-    return [{"text": utterance.text, "start": utterance.start, "end": utterance.end, "speaker": utterance.speaker}
-            for utterance in transcript.utterances]
+    return [
+        {"text": utterance.text, "start": utterance.start, "end": utterance.end, "speaker": utterance.speaker}
+            for utterance in transcript.utterances
+    ]
     

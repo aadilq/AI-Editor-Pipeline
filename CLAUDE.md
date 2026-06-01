@@ -135,7 +135,7 @@ pending → downloading → transcribing → scoring → extracting → done
 - [✅] **6.1** Integrate AssemblyAI SDK (`aai.Transcriber`)
 - [✅] **6.2** Enable speaker diarization and timestamped utterances
 - [✅] **6.3** Parse response into a list of segments with `text`, `start`, `end`, `speaker`
-- [ ] **6.4** Update job state to `scoring` on completion
+- [✅] **6.4** Update job state to `scoring` on completion
 
 ### Phase 7 — LLM Scoring Step
 - [ ] **7.1** Build Claude prompt that receives all segments and returns scored JSON
