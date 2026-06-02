@@ -147,7 +147,7 @@ pending → downloading → transcribing → scoring → extracting → done
 - [✅] **8.1** Integrate `ffmpeg-python` to cut clips from source video at exact timestamps
 - [✅] **8.2** Output clips to `./clips/{job_id}/clip_1.mp4`, `clip_2.mp4`, `clip_3.mp4`
 - [✅] **8.3** Write clip records to PostgreSQL with full metadata
-- [ ] **8.4** Update job state to `done` on completion
+- [✅] **8.4** Update job state to `done` on completion
 
 ### Phase 9 — Integration & Polish
 - [ ] **9.1** End-to-end smoke test with a real YouTube trailer URL

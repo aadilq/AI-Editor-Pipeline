@@ -6,6 +6,7 @@ from db.session import SessionLocal
 from worker.downloader import download_video
 from worker.transcriber import transcribe_video
 from worker.scorer import score_segments
+from worker.extractor import extract_clips
 
 load_dotenv()
 
@@ -28,15 +29,14 @@ def process_video(job_id: int):
         current_job.status = "downloading"
         db.commit()
         source_path = download_video(job_id, current_job.video_url)
-        # ... downloading logic ...
+        
 
         ## Step 2: Transcribing
         current_job.status = "transcribing"
         db.commit()
         segments = transcribe_video(source_path=source_path)
 
-        # ... transcribing logic ...
-
+    
         ## Step 3: LLM Scoring
         current_job.status = "scoring"
         db.commit()
@@ -55,12 +55,13 @@ def process_video(job_id: int):
             clip["start_second"] = start_second
             clip["end_second"] = end_second
             clip["duration"] = end_second - start_second
-        # ... scoring logic ...
+       
 
         ## Step 4: Extracting
         current_job.status = "extracting"
         db.commit()
-        # ... extracting logic ...
+        extract_clips(job_id, top_clips, source_path, db)
+        
 
         current_job.status = "done"
         db.commit()
