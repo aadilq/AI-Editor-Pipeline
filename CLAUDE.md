@@ -140,7 +140,7 @@ pending → downloading → transcribing → scoring → extracting → done
 ### Phase 7 — LLM Scoring Step
 - [✅] **7.1** Build Claude prompt that receives all segments and returns scored JSON
 - [✅] **7.2** Parse Claude response into ranked segment list with `score`, `topic`, `energy_level`
-- [ ] **7.3** Select top 3 segments; enforce 15–40s clip window around each
+- [✅] **7.3** Select top 3 segments; enforce 15–40s clip window around each
 - [ ] **7.4** Update job state to `extracting` on completion
 
 ### Phase 8 — Clip Extraction Step
