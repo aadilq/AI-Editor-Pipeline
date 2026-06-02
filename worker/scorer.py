@@ -31,6 +31,14 @@ def score_segments(segments: list[dict]) -> list[dict]:
             ]
         )
         raw = response.content[0].text
-        return json.loads(raw)
+        scored = json.loads(raw)
+        for item in scored:
+            original = segments[item["segment_index"]]
+            item["start"] = original["start"]
+            item["end"] = original["end"]
+            item["speaker"] = original["speaker"]
+        scored.sort(key=lambda x: x["score"], reverse=True)
+        return scored
+        
     except Exception as e:
-        raise RuntimeError("An error has occurred: {str(e)}")
+        raise RuntimeError(f"An error has occurred: {str(e)}")
