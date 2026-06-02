@@ -30,7 +30,14 @@ def score_segments(segments: list[dict]) -> list[dict]:
                 }
             ]
         )
-        raw = response.content[0].text
+        raw = response.content[0].text.strip()
+        print(f"RAW CLAUDE RESPONSE: {repr(raw)}")
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+            raw = raw.strip()
+            raw = raw.rstrip("```").strip()
         scored = json.loads(raw)
         for item in scored:
             original = segments[item["segment_index"]]
