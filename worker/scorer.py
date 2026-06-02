@@ -11,12 +11,22 @@ client = anthropic.Anthropic()
 def score_segments(segments: list[dict]) -> list[dict]:
 
     custom_system_prompt = """
-    You are going to be given a list of segments as JSON. the keys of the json response are explained as below.
-    The segment's text is going to be "text", the segment's start time is "start", the segment's end time is
-    "end" and segment's speaker is going to be "speaker". With each segment, you are to score it based on the
-    excitement and energy level. Look at word choices, phrases, punctuation, etc that show some level of excitement. Return only valid
-    json - no explanation text, just the array. for each segment of the array, return the segment_index(specific time-chunk), score(0.0 - 1.0), topic,
-    and energy_level(low/medium/high). 
+    You are an expert video editor specializing in short-form content for trailers and movie/TV scenes.
+    You will be given a list of transcript segments as JSON with keys: "text", "start", "end", "speaker".
+
+    Your job is to score each segment on its potential to make a viewer feel something — goosebumps, suspense,
+    shock, emotional investment, or the urge to keep watching. Prioritize segments that contain:
+    - Dramatic reveals or plot twists
+    - Emotional confrontations or vulnerable moments
+    - High-stakes dialogue ("we only have one shot", "I can't let you do this")
+    - Tension-building exchanges between characters
+    - Powerful one-liners or memorable quotes
+    - Moments of triumph, sacrifice, or loss
+
+    Deprioritize segments that are purely expository, transitional, or low-stakes small talk.
+
+    Return only valid JSON — no explanation text, just the array.
+    For each segment return: segment_index, score (0.0-1.0), topic (short descriptive label), energy_level (low/medium/high).
     """
     try:
         response = client.messages.create(
