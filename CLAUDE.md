@@ -150,7 +150,7 @@ pending → downloading → transcribing → scoring → extracting → done
 - [✅] **8.4** Update job state to `done` on completion
 
 ### Phase 9 — Integration & Polish
-- [ ] **9.1** End-to-end smoke test with a real YouTube trailer URL
+- [✅] **9.1** End-to-end smoke test with a real YouTube trailer URL
 - [ ] **9.2** Verify clip files accessible via filesystem (`./clips/`) and `GET /clips/{clip_id}`
 - [ ] **9.3** Tune Claude prompt based on scoring quality
 - [ ] **9.4** Add basic input validation (URL format, YouTube domain check)
