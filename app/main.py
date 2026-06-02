@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from db.session import get_db
 from sqlalchemy.orm import Session
 from db.models import Job, Clip
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, field_validator
 from worker.tasks import process_video
 
 from fastapi.responses import FileResponse
@@ -11,6 +11,13 @@ from fastapi.responses import FileResponse
 
 class SubmitPayload(BaseModel):
     url: HttpUrl
+
+    @field_validator("url")
+    @classmethod
+    def must_be_youtube(cls, v):
+        if "youtube.com" not in str(v) and "youtu.be" not in str(v):
+            raise ValueError("URL must be a Youtube link")
+        return v
 
 
 @asynccontextmanager
@@ -44,7 +51,7 @@ def get_job_status(job_id: int, db: Session = Depends(get_db)):
     job = db.query(Job).filter(Job.id == job_id).first()
     if job is None:
         raise HTTPException(status_code=404, detail="Job not found")
-    return {"job_status": job.status, "job_clips": []}
+    return {"job_status": job.status, "error_message": job.error_message, "job_clips": []}
 
 @app.get("/clips/{clip_id}")
 def serve_clip(clip_id: int, db: Session = Depends(get_db)):
