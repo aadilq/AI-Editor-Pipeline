@@ -4,6 +4,7 @@ from db.session import get_db
 from sqlalchemy.orm import Session
 from db.models import Job, Clip
 from pydantic import BaseModel, HttpUrl
+from worker.tasks import process_video
 
 from fastapi.responses import FileResponse
 
@@ -33,7 +34,7 @@ def submit(payload: SubmitPayload, db: Session = Depends(get_db)):
     db.refresh(job)
     # TODO: enqueue celery task
     # sends the task to the message broker (Redis)
-    # process_video.delay(job.id)
+    process_video.delay(job.id)
     return {"job_id": job.id}
     
 
