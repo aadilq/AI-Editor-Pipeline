@@ -156,7 +156,7 @@ pending → downloading → transcribing → scoring → extracting → done
 - [✅] **9.4** Add basic input validation (URL format, YouTube domain check)
 
 ### Phase 10 — GCP Cloud Storage
-- [ ] **10.1** Add `google-cloud-storage` to `requirements.txt`
+- [✅] **10.1** Add `google-cloud-storage` to `requirements.txt`
 - [ ] **10.2** Create GCS bucket and service account key in GCP console
 - [ ] **10.3** Add GCS credentials and bucket name to `.env`
 - [ ] **10.4** Write `worker/uploader.py` — upload clip file to GCS, return public/signed URL
