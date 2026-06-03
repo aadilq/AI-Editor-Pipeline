@@ -7,7 +7,7 @@ def download_video(job_id: int, video_url: str) -> str:
 
     # Configure the options
     ydl_opts = {
-        "format": "mp4",
+        "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
         "outtmpl": f"{output_dir}/source.mp4",
     }
 
