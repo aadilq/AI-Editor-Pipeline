@@ -6,7 +6,7 @@ from db.models import Job, Clip
 from pydantic import BaseModel, HttpUrl, field_validator
 from worker.tasks import process_video
 
-from fastapi.responses import FileResponse
+from fastapi.responses import RedirectResponse
 
 
 class SubmitPayload(BaseModel):
@@ -58,4 +58,4 @@ def serve_clip(clip_id: int, db: Session = Depends(get_db)):
     clip = db.query(Clip).filter(Clip.clip_id == clip_id).first()
     if clip is None:
         raise HTTPException(status_code=404, detail="Clip not found")
-    return FileResponse(clip.file_path, media_type="video/mp4")
+    return RedirectResponse(url=clip.file_path)
