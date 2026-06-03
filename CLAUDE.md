@@ -158,7 +158,7 @@ pending → downloading → transcribing → scoring → extracting → done
 ### Phase 10 — GCP Cloud Storage
 - [✅] **10.1** Add `google-cloud-storage` to `requirements.txt`
 - [✅] **10.2** Create GCS bucket and service account key in GCP console
-- [ ] **10.3** Add GCS credentials and bucket name to `.env`
+- [✅] **10.3** Add GCS credentials and bucket name to `.env`
 - [ ] **10.4** Write `worker/uploader.py` — upload clip file to GCS, return public/signed URL
 - [ ] **10.5** Update `extractor.py` — after FFmpeg extraction, upload to GCS and store GCS URL in `file_path`
 - [ ] **10.6** Update `GET /clips/{clip_id}` — redirect to GCS URL instead of serving via `FileResponse`

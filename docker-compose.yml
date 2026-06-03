@@ -17,6 +17,7 @@ services:
               condition: service_healthy
         volumes:
           - ./clips:/app/clips
+          - ./credentials.json:/app/credentials.json
     redis:
         image: redis:7.2
         container_name: redis-queue
@@ -47,6 +48,7 @@ services:
               condition: service_healthy
         volumes:
             - ./clips:/app/clips
+            - ./credentials.json:/app/credentials.json
     postgres:
       image: postgres:16-alpine
       container_name: postgres-db
