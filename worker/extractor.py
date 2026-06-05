@@ -14,9 +14,11 @@ def extract_clips(job_id: int, top_clips: list[dict], source_path: str, db) -> N
         output_file = f"/app/clips/{job_id}/clip_{i+1}.mp4"
 
 
-        stream = ffmpeg.input(input_file, ss=clip["start_second"], to=clip["end_second"])
+        duration = clip["end_second"] - clip["start_second"]
+        stream = ffmpeg.input(input_file, ss=clip["start_second"])
+        video = stream.video
         audio = stream.audio.filter("volume", 1.5)
-        ffmpeg.output(stream.video, audio, output_file, vcodec="copy", acodec="aac").run()
+        ffmpeg.output(video, audio, output_file, vcodec="libx264", acodec="aac", t=duration).run(overwrite_output=True)
         gcs_url = upload_public_file(bucket_name=os.getenv("GCS_BUCKET_NAME"), source_file_path=output_file, destination_blob_name=f"{job_id}/clip_{i+1}.mp4")
         final_clip = Clip(
             job_id=job_id,
