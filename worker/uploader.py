@@ -9,6 +9,4 @@ def upload_public_file(bucket_name, source_file_path, destination_blob_name):
 
     blob.upload_from_filename(source_file_path)
 
-    blob.make_public()
-
     return blob.public_url
