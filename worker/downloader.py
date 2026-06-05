@@ -9,6 +9,7 @@ def download_video(job_id: int, video_url: str) -> str:
     ydl_opts = {
         "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
         "outtmpl": f"{output_dir}/source.mp4",
+        "merge_output_format": "mp4",
     }
 
     # Execute the download context
